@@ -50,18 +50,17 @@ server.put("/:id", validateActionId, async (req, res) => {
 });
 
 server.delete("/:id", validateActionId, async (req, res) => {
-    try {
-        const count = await Accounts.remove(req.params.id);
-        if (count > 0) {
-            res.status(200).json({ message: "The account has been removed" });
-          } else {
-            res.status(404).json({ message: "The account could not be found" });
-          }
-        } catch (err) {
-          res.status(500).json({ err });
-        }
-})
-
+  try {
+    const count = await Accounts.remove(req.params.id);
+    if (count > 0) {
+      res.status(200).json({ message: "The account has been removed" });
+    } else {
+      res.status(404).json({ message: "The account could not be found" });
+    }
+  } catch (err) {
+    res.status(500).json({ err });
+  }
+});
 
 async function validateActionId(req, res, next) {
   try {
